@@ -19,7 +19,7 @@ struct LandmarkList: View {
                 
                 ForEach(userData.landmarks) { landmark in
                     if !self.userData.showFavoritesOnly || landmark.isFavorite {
-                        NavigationLink(destination: LandmarkDetail(landmark: landmark)) {
+                        NavigationLink(destination: LandmarkDetail(landmark: landmark).environmentObject(self.userData)) {
                             LandmarkRow(landmark: landmark)
                         }
                     }
@@ -37,5 +37,6 @@ struct LandmarkList_Previews: PreviewProvider {
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)
         }
+        .environmentObject(UserData())
     }
 }
